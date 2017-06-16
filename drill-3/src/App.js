@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addGuest, removeGuest } from './ducks/guestList';
 import './App.css';
 
 class App extends Component {
@@ -14,15 +16,17 @@ class App extends Component {
   handleInputChange(e) {
     this.setState({
       text: e.target.value
-    })
+    }, () => console.log(this.state))
   }
   handleSubmit(e) {
     e.preventDefault();
-    // add guest function here
+    this.props.addGuest(this.state.text)
+
     this.setState({
       text: ''
     })
   }
+
 
   render() {
     return (
@@ -30,11 +34,14 @@ class App extends Component {
         <h1>DevMountain Hackathon</h1>
         <h3>Guest List:</h3>
         <ul>
-          {{/*??*/}.map( (guest, i) => {
+          {this.props.list.map( (guest, i) => {
             return (
               <div key={i} className="list-item">
                 <li>{guest}</li>
-                <button type="" className="">Remove</button>
+                <button 
+                onClick={()=>this.props.removeGuest(i)}
+                type="" 
+                className="">Remove</button>
               </div>
             )
           })}
@@ -56,5 +63,12 @@ class App extends Component {
 }
 
 // mapStateToProps
-
+function mapStateToProps(state) {
+  return {
+    list: state,
+  }
+}
 // connect
+export default connect(mapStateToProps, { addGuest, removeGuest })(App);
+                                //ES6 { addGuest } === { addGuest : addGuest }
+                                      

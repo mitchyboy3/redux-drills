@@ -26,7 +26,8 @@ class App extends Component {
       edit: true,
       guestToEdit: guest,
       guestIndex: i
-    })
+    },
+    ()=>console.log(this.state))
   }
 
   handleInputChange(e) {
@@ -51,7 +52,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>DevMountain Hackathon</h1>
+        <h1><a className='devmountainBlue'>DevMountain</a> Hackathon</h1>
         <h3>Guest List:</h3>
         <ul>
           {this.props.list.map( (guest, i) => {
@@ -84,10 +85,18 @@ class App extends Component {
         </form>
         {
            this.state.edit ?
-                <EditGuest />
+                <EditGuest 
+                hide={this.hideModal}
+                guest={this.state.guestToEdit}
+                ind={this.state.guestIndex}
+                />
                 : null
         }
+        <div className='Under_App'>
+        
+        </div>
       </div>
+      
     );
   }
 }

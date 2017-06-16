@@ -2,8 +2,12 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: slategray;
 }
 
+.Under_App {
+  background-color: slategray;
+}
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -42,6 +46,9 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+.devmountainBlue {
+  color: #c5e8f7;
+}
 
 
 @keyframes App-logo-spin {
